@@ -8,15 +8,7 @@ import (
 )
 
 func main() {
-	// if len(os.Args) > 1 {
 
-	// 	data := &structure.ArtData{} // объявление структуры данных для сбора и сохранения
-	// 	data.Args = os.Args[1]
-	// 	input.ReadFile(data)    // запускаем функцию и полученнные данные сохраняем в data
-	// 	input.CheckSymbol(data) //check symbols in range ascii of 32 to 126
-	// 	input.SplitText(data)   // передали аргументы чтобы манипулировать ими
-
-	// }
 	if len(os.Args) != 2 {
 		fmt.Println("No arguments")
 		return
