@@ -7,15 +7,6 @@ import (
 	"strings"
 )
 
-func IsValid(str byte) {
-	// for _, x := range str {
-	if str < ' ' || str > '~' {
-		fmt.Println("no correct symbols")
-		os.Exit(0)
-	}
-	// }
-}
-
 func main() {
 	// if len(os.Args) > 1 {
 
@@ -27,21 +18,24 @@ func main() {
 
 	// }
 	args := os.Args[1]
-	fmt.Println(args, len(args))
+	argsArr := strings.Split(args, "\\n")
 	file, _ := ioutil.ReadFile("fonts/standard.txt")
-	IsValid(args[0])
 	arr := []string{}
-	for _, el := range strings.Split(string(file), string('\n')) {
+	for _, el := range strings.Split(string(file), "\n") {
 		arr = append(arr, el)
 	}
-
-	for x := 0; x < 8; x++ {
-
-		for _, el := range args {
-			n := (el-32)*9 + 1
-			fmt.Print(arr[int(n)+x])
+	for _, arg := range argsArr {
+		if arg == "" {
+			fmt.Println()
+			continue
 		}
-		fmt.Println()
+		for x := 0; x < 8; x++ {
+			for _, el := range args {
+				n := (el-32)*9 + 1
+				fmt.Print(arr[int(n)+x])
+			}
+			fmt.Println()
+		}
 	}
 
 }
