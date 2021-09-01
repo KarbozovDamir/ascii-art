@@ -22,17 +22,18 @@ func main() {
 		fmt.Println("Non-valid characters")
 		return
 	}
-
+	// in order to pass the test - student$ go run . "" | cat -e
 	if argMain == "" {
 		fmt.Println()
 		return
 	}
-
+	// in order to pass the test - student$ go run . "Hello\n" | cat -e
 	if argMain == "\\n" {
 		fmt.Println("\n")
 		return
 	}
 
+	//read the content of the file
 	argsArr := strings.Split(strings.ReplaceAll(argMain, "\\n", "\n"), "\n")
 	// argsArr := strings.Split(argMain, "\\n")
 	file, err := ioutil.ReadFile("fonts/standard.txt")
@@ -54,6 +55,7 @@ func main() {
 	printBanners(argsArr, arr)
 }
 
+//input validation
 func isValid(s string) bool {
 	for _, ch := range s {
 		if ch < ' ' && ch != 10 || ch > '~' {
@@ -63,6 +65,7 @@ func isValid(s string) bool {
 	return true
 }
 
+//print the full outcome
 func printBanners(banners, arr []string) {
 	for _, b := range banners {
 		if b == "" {
