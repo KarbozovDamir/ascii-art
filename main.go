@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	FILE_LEN = 6623
+	fileLen = 6623
 )
 
 func main() {
@@ -17,18 +17,31 @@ func main() {
 		return
 	}
 	argMain := os.Args[1]
+
 	if !isValid(argMain) {
 		fmt.Println("Non-valid characters")
 		return
 	}
+
+	if argMain == "" {
+		fmt.Println()
+		return
+	}
+
+	if argMain == "\\n" {
+		fmt.Println("\n")
+		return
+	}
+
 	argsArr := strings.Split(strings.ReplaceAll(argMain, "\\n", "\n"), "\n")
+	// argsArr := strings.Split(argMain, "\\n")
 	file, err := ioutil.ReadFile("fonts/standard.txt")
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
 
-	if len(file) != FILE_LEN {
+	if len(file) != fileLen {
 		fmt.Println("File is corrupted")
 		return
 	}
@@ -38,21 +51,7 @@ func main() {
 		arr = append(arr, el)
 	}
 
-	for _, arg := range argsArr {
-		if arg == "" {
-			fmt.Println()
-			continue
-		}
-		for x := 0; x < 8; x++ {
-			for _, el := range arg {
-				n := (el-32)*9 + 1
-				fmt.Print(arr[int(n)+x])
-			}
-			fmt.Println()
-		}
-		fmt.Println()
-	}
-
+	printBanners(argsArr, arr)
 }
 
 func isValid(s string) bool {
@@ -62,4 +61,21 @@ func isValid(s string) bool {
 		}
 	}
 	return true
+}
+
+func printBanners(banners, arr []string) {
+	for _, b := range banners {
+		if b == "" {
+			continue
+		}
+
+		for x := 0; x < 8; x++ {
+			for _, el := range b {
+				n := (el-32)*9 + 1
+				fmt.Print(arr[int(n)+x])
+			}
+			fmt.Println("")
+		}
+		fmt.Println("")
+	}
 }
