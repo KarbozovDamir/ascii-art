@@ -55,7 +55,7 @@ func main() {
 	printBanners(argsArr, arr)
 }
 
-//input validation
+// Input validation
 func isValid(s string) bool {
 	for _, ch := range s {
 		if ch < ' ' && ch != 10 || ch > '~' {
@@ -65,13 +65,12 @@ func isValid(s string) bool {
 	return true
 }
 
-//print the full outcome
+// Print the full outcome
 func printBanners(banners, arr []string) {
 	for _, b := range banners {
 		if b == "" {
 			continue
 		}
-
 		for x := 0; x < 8; x++ {
 			for _, el := range b {
 				n := (el-32)*9 + 1
